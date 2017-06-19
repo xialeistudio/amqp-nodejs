@@ -1,7 +1,7 @@
 {
   "name": "@xialeistudio/amqp",
   "version": "1.0.1",
-  "description": "",
+  "description": "amqp library with typescript support",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
