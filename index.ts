@@ -2,14 +2,15 @@
  * Created by xialei on 2017/6/5.
  */
 import * as amqplib from 'amqplib';
+import {Options} from "amqplib";
 
 const debug = require('debug')('@xialeistudio/amqp');
 export default class Amqp {
-    public queueConfig: [string, any];
+    public queueConfig: [string, Options.AssertQueue];
     public publishConfig: [string, string];
     private connectionConfig: [string, any];
     private connection: amqplib.Connection;
-    private channel: amqplib.Channel;
+    public channel: amqplib.Channel;
 
     constructor(url: any, options?: any) {
         this.connectionConfig = [url, options];
@@ -49,6 +50,10 @@ export default class Amqp {
         return this.channel.publish(this.publishConfig[0], this.publishConfig[1], buffer);
     }
 
+    /**
+     * 连接队列
+     * @returns {Promise<void>}
+     */
     public async connect() {
         this.connection = await amqplib.connect(this.connectionConfig[0], this.connectionConfig[1]);
         this.channel = await this.connection.createChannel();

@@ -2,12 +2,13 @@
  * Created by xialei on 2017/6/5.
  */
 import * as amqplib from 'amqplib';
+import { Options } from "amqplib";
 export default class Amqp {
-    queueConfig: [string, any];
+    queueConfig: [string, Options.AssertQueue];
     publishConfig: [string, string];
     private connectionConfig;
     private connection;
-    private channel;
+    channel: amqplib.Channel;
     constructor(url: any, options?: any);
     /**
      * 订阅消费模式
@@ -21,5 +22,9 @@ export default class Amqp {
      * @returns {Promise<boolean>}
      */
     publish(data: any): Promise<boolean>;
+    /**
+     * 连接队列
+     * @returns {Promise<void>}
+     */
     connect(): Promise<void>;
 }

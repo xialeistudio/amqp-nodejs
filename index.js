@@ -102,6 +102,10 @@ var Amqp = (function () {
             });
         });
     };
+    /**
+     * 连接队列
+     * @returns {Promise<void>}
+     */
     Amqp.prototype.connect = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a, _b;
